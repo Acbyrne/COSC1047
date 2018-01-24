@@ -1,0 +1,39 @@
+//COSC1047 Adam Byrne Assignment1 
+//Parent Class "Genra" - extends "Artist"
+
+public class Genra extends Artist {
+	
+	//Variables
+	private String genra = "Uncpecified Genra";
+	private String favGenra = "Unspecified Genra";
+	
+	//Constructors
+	public Genra() {}
+	
+	public Genra(String genra , String favGenra) {
+		this.genra = genra;
+		this.favGenra = favGenra;
+	}
+	
+	//FavGenra
+	public String getFavGenra() {
+		return favGenra;
+	}
+	
+	public void setFavGenra(String favGenra) {
+		this.favGenra = favGenra;
+	}
+	
+	//Select Genra
+	public int selectGenra(int choice) {
+		switch(choice) {
+		case 1: genra = "Rock";
+		case 2: genra = "Rap";
+		case 3: genra = "Pop";
+		case 4: genra = "Alternative";
+		case 5: genra = "Classical";
+		}
+		return choice;
+	}	
+	
+}//Class
