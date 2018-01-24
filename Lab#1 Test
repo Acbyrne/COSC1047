@@ -1,0 +1,42 @@
+//COSC1047 Adam Byrne Lab1 - Test Program
+
+import java.util.Scanner;
+public class TriangleTest {
+
+	public static void main(String[]args) {
+		
+		Scanner input = new Scanner(System.in);
+		
+		Triangle triangle1 = new Triangle(); 
+		
+		//input sides
+		System.out.print("Enter a length for side 1: ");
+		double side1 = input.nextDouble();
+		System.out.print("Enter a length for side 2: ");
+		double side2 = input.nextDouble();
+		System.out.print("Enter a length for side 3: ");
+		double side3 = input.nextDouble();
+		
+		//Set sides
+		triangle1.setSide1(side1);
+		triangle1.setSide2(side2);
+		triangle1.setSide3(side3);
+		
+		//Set color
+		System.out.print("Enter a color: ");
+		String color = input.next();
+		triangle1.setColor(color);
+		
+		//Boolean Filled
+		System.out.print("Is the triangle filled? Type:(True / False)");
+		boolean filled = input.nextBoolean();
+		triangle1.setFilled(filled);
+		
+		//Perimeter
+		triangle1.getPerimeter();
+		
+		//toString
+		System.out.println(triangle1.toString());
+			
+	}
+}
