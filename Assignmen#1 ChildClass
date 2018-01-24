@@ -1,0 +1,30 @@
+//COSC1047 Adam Byrne Assignment1 
+//Child Class "Album" - extends "Artist" & Genra
+
+public class Album extends Genra{
+	
+	private String albumName = "Unspecified Album";
+	private String favouriteSong = "Unspecified Song";
+	private int numOfSongs = 0;
+	private double Average = 0.0;
+	
+	public int getNumOfSongs() {
+		return numOfSongs;
+	}
+	
+	public void setNumOfSongs(int numOfSongs) {
+		this.numOfSongs = numOfSongs;
+	}
+	
+	public String getAlbumName() {
+		return albumName;
+	}
+	
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
+	}
+	
+	
+
+	
+}//Class
