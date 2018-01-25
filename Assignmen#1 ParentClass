@@ -24,6 +24,15 @@ public class Genra extends Artist {
 		this.favGenra = favGenra;
 	}
 	
+	//Genra
+		public String getGenra() {
+			return favGenra;
+		}
+		
+		public void setGenra(String Genra) {
+			this.genra = genra;
+		}
+	
 	//Select Genra
 	public int selectGenra(int choice) {
 		switch(choice) {
