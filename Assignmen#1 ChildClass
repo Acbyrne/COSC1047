@@ -4,9 +4,9 @@
 public class Album extends Genra{
 	
 	private String albumName = "Unspecified Album";
-	private String favouriteSong = "Unspecified Song";
+	private String favSong = "Unspecified Song";
 	private int numOfSongs = 0;
-	private double Average = 0.0;
+	private double average = 0.0;
 	
 	public int getNumOfSongs() {
 		return numOfSongs;
@@ -24,7 +24,35 @@ public class Album extends Genra{
 		this.albumName = albumName;
 	}
 	
+	public String getFavSong() {
+		return favSong;
+	}
 	
+	public void setFavSong(String favSong) {
+		this.favSong = favSong;
+	}
+	
+	public double averageLength(double numOfSongs , double[] songLength) {
+		double average = 0.0;
+		for(int i = 0; i <= songLength.length; i++){
+			average += songLength[i];
+		}
+		average = average / numOfSongs;
+		return this.average = average;
+	}
+	
+	public double getAverage() {
+		return this.average;
+	}
+	
+    @Override
+    public String toString() {
+         return "Artists name: " + super.getName() + "\nCountry of birth: " + super.getCountry() + "\nAlive? " + 
+        super.isAlive() + "\n\nTheir genra is: " + super.getGenra() + "\nYour favourite genra is: " + super.getFavGenra() +
+        "\nThe album name is: " + this.getAlbumName() + "\nYour favourite song is: " + this.getFavSong() + 
+        "\nThe number of songs on this album is: " + this.getNumOfSongs() + "\nThe average length of a song on this album is: " + 
+        this.getAverage();
+}
 
 	
 }//Class
