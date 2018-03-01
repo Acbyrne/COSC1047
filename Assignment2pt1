@@ -1,13 +1,7 @@
+
 //COSC1047 Assignment#2 - part1 : Adam Byrne 
 
-package javaapplication;
 import javax.swing.*;
-
-import javaapplication.Unlocker.downListener1;
-import javaapplication.Unlocker.downListener2;
-import javaapplication.Unlocker.upListener1;
-import javaapplication.Unlocker.upListener2;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -69,6 +63,8 @@ public class Assignment2pt1 extends JFrame{
     //Add
     class addListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+        	num1 = Integer.valueOf(input1.getText());
+        	num2 = Integer.valueOf(input2.getText());
         	ans = num1 + num2;
         	output.setText(""+ ans);
         }
@@ -76,6 +72,8 @@ public class Assignment2pt1 extends JFrame{
     //Sub
     class subListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+        	num1 = Integer.valueOf(input1.getText());
+        	num2 = Integer.valueOf(input2.getText());
         	ans = num1 - num2;
         	output.setText(""+ ans);
         }
@@ -83,6 +81,8 @@ public class Assignment2pt1 extends JFrame{
     //Multiply
     class mulListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+        	num1 = Integer.valueOf(input1.getText());
+        	num2 = Integer.valueOf(input2.getText());
         	ans = num1 * num2;
         	output.setText(""+ ans);
         }
@@ -90,6 +90,8 @@ public class Assignment2pt1 extends JFrame{
     //Divide
     class divListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
+        	num1 = Integer.valueOf(input1.getText());
+        	num2 = Integer.valueOf(input2.getText());
         	ans = num1 / num2;
     		output.setText(""+ ans);
         }
