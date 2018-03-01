@@ -1,0 +1,109 @@
+//COSC1047 Lab#4 Adam Byrne part2
+//Custom exception is makes the string "ok" invalid
+
+package javaapplication;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class Main extends JFrame implements ActionListener {
+    private double[] a;
+    private JRadioButton divideByZeroButton;   
+    private JRadioButton badCastButton;  
+    private JRadioButton arrayBoundsButton;    
+    private JRadioButton nullPointerButton;
+    private JRadioButton throwMyButton;
+    
+    public Main() {
+        
+        // Create a JPanel and GridLayout
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(8, 1));
+        
+        // Create buttons and add them to the panel
+        ButtonGroup g = new ButtonGroup();
+        divideByZeroButton = addRadioButton("Divide by zero", g, p);
+        badCastButton = addRadioButton("Bad cast", g, p);
+        arrayBoundsButton = addRadioButton("Array bounds", g, p);
+        nullPointerButton = addRadioButton("Null pointer", g, p);
+        throwMyButton = addRadioButton("Throw My own Exception", g, p);
+        getContentPane().add(p);
+    }
+    
+    private JRadioButton addRadioButton(String s, ButtonGroup g, JPanel p) {
+        JRadioButton button = new JRadioButton(s, false);
+        button.addActionListener(this);
+        g.add(button);
+        p.add(button);
+        return button;
+    }  	
+    
+    /** Custom Exception */
+    public class InvalidStringException extends Exception{
+    	public InvalidStringException(String s) {
+    		super(s);
+    	}
+    }
+    
+    // Trigger and catch various exceptions
+    public void actionPerformed(ActionEvent evt) {
+        try {
+            Object source = evt.getSource();
+            if (source == divideByZeroButton) {
+               // cause divideByZero exception
+            	int i = 1/0;
+               
+            } else if (source == badCastButton) {
+                // cause a bad cast exception
+            	Object i = Integer.valueOf(1);
+            	String s = (String)i; 
+            	
+                
+            } else if (source == arrayBoundsButton) {
+                //cause an array out of bounds exception
+            	int [] array = new int[2];
+            	array[3] = 1;
+                
+            } else if (source == nullPointerButton) {
+                //cause a null pointer exception
+            	String i = null;
+            	System.out.println(i.length());
+                
+                
+            } else if (source == throwMyButton) {
+                //create your own custom exception and throw it, and handle it
+            	String s = "ok";
+            	try {
+            		if(s != "ok") {
+            			System.out.println(s);
+            		}
+            		else {
+            			throw new InvalidStringException("Invalid String: " + s);
+            		}
+            	}
+            	catch (InvalidStringException ex) {
+            		System.out.println("Invalid String: " + ex);
+            	}
+            }
+        }
+    	catch (RuntimeException e) {
+    		System.out.println("Caught RuntimeException: " + e);
+    	} 
+    	catch (Exception e) {
+    		System.out.println("Caught Exception: " + e);
+    	}
+    } 
+    
+    
+    public static void main(String[] args) {
+        JFrame frame = new Main();
+        frame.setSize(200, 200);
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+        frame.setVisible(true);
+    }
+}
