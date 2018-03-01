@@ -1,0 +1,26 @@
+//COSC1047 Lab#4 Adam Byrne part1
+
+package javaapplication;
+
+import java.util.Scanner;
+import java.util.InputMismatchException;
+
+class Lab4 extends Main {
+	public static void main(String args[]) {
+		Scanner input = new Scanner(System.in);
+		final int num1 = 10; 
+		try {
+			System.out.print("Enter an integer to divide 10 by: ");
+			int num2 = input.nextInt();
+			int quotient = num1/num2; 
+			System.out.println(num1 + " / " + num2 + " = " + quotient);
+		}
+		catch (ArithmeticException e) { 
+			System.out.println("Invalid number: cannot divide by 0: " + e);
+		}
+		catch (InputMismatchException e) {	
+			System.out.println("Invalid number: must be an int: " + e);	
+		}
+	}//main
+}//class
+
