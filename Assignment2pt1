@@ -1,25 +1,27 @@
-
 //COSC1047 Assignment#2 - part1 : Adam Byrne 
+
+//package javaapplication;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.InputMismatchException;
 
 public class Assignment2pt1 extends JFrame{
     private JButton addB = new JButton("add");
     private JButton subB = new JButton("subtract");
     private JButton mulB = new JButton("multiply");
     private JButton divB = new JButton("divide");
-    private JLabel lable1 = new JLabel("Input 1: ");
-    private JLabel lable2 = new JLabel("Input 2: ");
-    private JLabel lable3 = new JLabel("Output: ");
+    private JLabel lable1 = new JLabel("   Input 1:      ");
+    private JLabel lable2 = new JLabel("   Input 2:      ");
+    private JLabel lable3 = new JLabel("   Output:      ");
     private JTextField input1 = new JTextField("0");
     private JTextField input2 = new JTextField("0");
     private JTextField output = new JTextField("0");
      
     private int num1 = Integer.valueOf(input1.getText());
     private int num2 = Integer.valueOf(input2.getText());
-    private int ans = 0;
+    private int ans = Integer.valueOf(output.getText());
     
     public Assignment2pt1(){
     	JPanel inputPanel = new JPanel();
@@ -44,6 +46,11 @@ public class Assignment2pt1 extends JFrame{
         buttonPanel.add(divB);
         add(buttonPanel, BorderLayout.SOUTH);
         
+    	JPanel fillerPanel = new JPanel();
+        add(fillerPanel, BorderLayout.EAST);
+
+
+        
         //Listeners
         addB.addActionListener(new addListener());
         subB.addActionListener(new subListener());
@@ -63,37 +70,117 @@ public class Assignment2pt1 extends JFrame{
     //Add
     class addListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-        	num1 = Integer.valueOf(input1.getText());
-        	num2 = Integer.valueOf(input2.getText());
-        	ans = num1 + num2;
-        	output.setText(""+ ans);
+        	try {
+            	num1 = Integer.parseInt(input1.getText());
+            	num2 = Integer.parseInt(input2.getText());
+            	
+            		int length1 = input1.getDocument().getLength(); 
+            		for(int i = 0; i > length1; i ++) {
+
+            			if(Character.isDigit(input1.getText().charAt(i))) {
+            				ans = num1 + num2;
+            				output.setText(""+ ans);        			
+            			}
+            			else {
+            				throw new NumberFormatException("Invalid input: must be an integer");
+            			}
+            		}
+            	}
+            	catch (NumberFormatException ex) {	
+            		output.setText("Input must be an integer");
+        			System.out.println("Invalid number: must be an int: " + ex);	
+        		}
         }
   }
     //Sub
     class subListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-        	num1 = Integer.valueOf(input1.getText());
-        	num2 = Integer.valueOf(input2.getText());
-        	ans = num1 - num2;
-        	output.setText(""+ ans);
+        	try {
+        	num1 = Integer.parseInt(input1.getText());
+        	num2 = Integer.parseInt(input2.getText());
+        	
+        		int length1 = input1.getDocument().getLength(); 
+        		for(int i = 0; i > length1; i ++) {
+
+        			if(Character.isDigit(input1.getText().charAt(i))) {
+        				ans = num1 - num2;
+        				output.setText(""+ ans);        			
+        			}
+        			else {
+        				throw new NumberFormatException("Invalid input: must be an integer");
+        			}
+        		}
+        	}
+        	catch (NumberFormatException ex) {	
+        		output.setText("Input must be an integer");
+    			System.out.println("Invalid number: must be an int: " + ex);	
+    		}
         }
   }
     //Multiply
     class mulListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-        	num1 = Integer.valueOf(input1.getText());
-        	num2 = Integer.valueOf(input2.getText());
-        	ans = num1 * num2;
-        	output.setText(""+ ans);
+        	try {
+            	num1 = Integer.parseInt(input1.getText());
+            	num2 = Integer.parseInt(input2.getText());
+            	
+            		int length1 = input1.getDocument().getLength(); 
+            		for(int i = 0; i > length1; i ++) {
+
+            			if(Character.isDigit(input1.getText().charAt(i))) {
+            				ans = num1 * num2;
+            				output.setText(""+ ans);        			
+            			}
+            			else {
+            				throw new NumberFormatException("Invalid input: must be an integer");
+            			}
+            		}
+            	}
+            	catch (NumberFormatException ex) {	
+            		output.setText("Input must be an integer");
+        			System.out.println("Invalid number: must be an int: " + ex);	
+        		}
         }
   }
     //Divide
     class divListener implements ActionListener{
         public void actionPerformed(ActionEvent e){
-        	num1 = Integer.valueOf(input1.getText());
-        	num2 = Integer.valueOf(input2.getText());
-        	ans = num1 / num2;
-    		output.setText(""+ ans);
+        	
+        	try {
+            	num1 = Integer.parseInt(input1.getText());
+            	num2 = Integer.parseInt(input2.getText());
+            	
+            		int length1 = input1.getDocument().getLength(); 
+            		for(int i = 0; i > length1; i ++) {
+
+            			if(Character.isDigit(input1.getText().charAt(i))) {
+            				ans = num1 - num2;
+            				output.setText(""+ ans);        			
+            			}
+            			else {
+            				throw new NumberFormatException("Invalid input: must be an integer");
+            			}
+            		}
+            	}
+            	catch (NumberFormatException ex) {	
+            		output.setText("Input must be an integer");
+        			System.out.println("Invalid number: must be an int: " + ex);	
+        		}
+        	
+        	try {
+        		if(num2 != 0) {
+        			ans = num1 / num2;
+        			output.setText(""+ ans);        			
+        		}
+        		else {
+        			throw new ArithmeticException("Invalid operation: cannot divide by 0: " + num1 + " / " + num2);
+        		}
+        	}
+        	catch (ArithmeticException ex) { 
+        		output.setText("Cannot divide by 0");
+    			System.out.println("Invalid number: cannot divide by 0: " + ex);
+    		}
+        
         }
   }
 
