@@ -1,0 +1,108 @@
+//COSC1047 Assignment#2 - part1 : Adam Byrne 
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class Assignment2pt2 extends JFrame{
+	
+	private JButton onB = new JButton("Turn lights on");
+	private JButton offB = new JButton("Turn lights off");
+	private JTextField on = new JTextField();
+	private JTextField off = new JTextField();
+	private JTextField status = new JTextField();
+	private boolean isOn = false;
+	private boolean isOff = false;
+	
+	
+	public Assignment2pt2(){
+		JPanel buttonPanel = new JPanel();
+		//buttonPanel.setLayout(new GridLayout(2, 1));
+		buttonPanel.add(onB);
+		buttonPanel.add(offB);
+		add(buttonPanel, BorderLayout.CENTER);
+		
+		JPanel statusPanel = new JPanel();
+		statusPanel.setLayout(new GridLayout(1, 1));
+		statusPanel.setBorder(BorderFactory.createTitledBorder("Light Switch"));
+		statusPanel.add(on);
+		statusPanel.add(off);
+		statusPanel.add(status);
+		add(statusPanel, BorderLayout.NORTH);
+		
+		JPanel fillerPanel = new JPanel();
+        add(fillerPanel, BorderLayout.SOUTH);
+		
+		//Listeners
+		onB.addActionListener(new onListener());
+		offB.addActionListener(new offListener());
+	}
+	
+	/** Custom Exception */
+	public class uselessException extends Exception{
+		public uselessException(String s) {
+			super(s);
+		}
+	}
+	
+	public static void main(String[] args) {
+		JFrame frame = new Assignment2pt2();
+		frame.setTitle("Home Automation App");
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 200);
+		frame.setVisible(true);
+	}
+	
+	//on
+	class onListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			try {
+				if(isOn == false) {
+					off.setText("");
+					status.setText("");
+					on.setText("Lights are on");
+					isOn = true;
+					isOff = false;
+				}
+				else if (isOn == true){
+					//isOn = false;
+					throw new uselessException("Lights are already on");
+				}
+				
+				//isOn = false;
+			}
+			catch (uselessException ex) {	
+				isOn = false;
+				status.setText("Already on!");
+				System.out.println("cant turn lights on while they are on: " + ex);	
+			}
+		}
+	}
+	
+	//off
+	class offListener implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			try {
+				if(isOff == false) {
+					on.setText("");
+					status.setText("");
+					off.setText("Lights are off");
+					isOff = true;
+					isOn = false;
+				}
+				else if (isOff == true) {
+					//isOff = false;
+					throw new uselessException("Lights are already off");
+				}
+				//isOff = false;
+			}
+			catch (uselessException ex) {	
+				isOff = false;
+				status.setText("Already off!");
+				System.out.println("cant turn lights on while they are on: " + ex);	
+			}
+		}
+	}
+}
+
